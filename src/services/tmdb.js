@@ -5,9 +5,8 @@ export const tmdbAPI = {
     getNewMovies: () => 
         fetch(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}&language=es-ES`)
             .then(res => res.json()),
-
-    getPopularMovies: () => 
-        fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=es-ES`)
+    getPopularMovies: (page = 1) => 
+        fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=es-ES&page=${page}`)
             .then(res => res.json()),
     getMovieDetails: (id) => 
         fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=es-ES`)
