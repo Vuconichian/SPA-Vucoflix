@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState('');
+    const navigate = useNavigate();
 
     const handleSearch = (e) => {
     e.preventDefault();
-    console.log('Searching for:', searchQuery);
+    if (searchQuery.trim()) {
+        navigate(`/?search=${encodeURIComponent(searchQuery.trim())}`);
+    }
     };
 
     return (
@@ -39,6 +42,7 @@ const Header = () => {
                         onChange={(e) => setSearchQuery(e.target.value)}
                         aria-label="Buscar película"
                     />
+                    <button type="submit" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></button>
                     <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 </form>
             </div>
