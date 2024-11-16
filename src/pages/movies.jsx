@@ -6,14 +6,14 @@ import { tmdbAPI } from '../services/tmdb';
 const Movies = () => {
     const [movies, setMovies] = useState([]);
     const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(5); // Limitamos a 5 páginas
+    const [totalPages, setTotalPages] = useState(5); // Limitado a 5 páginas
 
     useEffect(() => {
         const fetchMovies = async () => {
             try {
                 const data = await tmdbAPI.getPopularMovies(page);
                 setMovies(data.results);
-                setTotalPages(Math.min(data.total_pages, 5)); // Aseguramos que no exceda 5 páginas
+                setTotalPages(Math.min(data.total_pages, 5));
                 } catch (error) {
                     console.error('Error fetching movies:', error);
                 }
